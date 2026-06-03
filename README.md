@@ -91,8 +91,6 @@ All preserve old URLs as permanent redirects — won't break installed skills.
 
 ## Skill registry
 
-(populate as skills are added)
-
 | Skill | Purpose | Sources fetched |
 |---|---|---|
-| — | (none yet) | — |
+| [consultative-selling-thread-builder](skills/consultative-selling-thread-builder.md) | Spin up a primed sales thread for consultative LinkedIn prospecting — stage call, DM/comment/hold decision tree, quality gate, rationale on every output | `sources/methodology/consultative-selling/*` (6 doctrine docs + 3 templates) + `sources/reference/consultative-selling/*` (3 schemas + system explainer) |
