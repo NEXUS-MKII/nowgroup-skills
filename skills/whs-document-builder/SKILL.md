@@ -3,6 +3,8 @@ name: whs-document-builder
 description: "Use when a user wants to build, generate, or create WHS (Work Health & Safety) documents, safety policies, safe operating procedures (SOPs), or any suite of workplace documents for a trade or service business, for an Australian or New Zealand client. Triggers: 'create WHS documents', 'build a safety library', 'write SOPs for our tools/equipment', 'generate safety policies', 'make branded WHS documents', 'write a safe work method statement', 'produce the documents from the audit', or any request to produce multiple .docx workplace documents. Also use when a user uploads a logo to brand a document set, uploads an existing policy to expand or replicate, or hands you a findings.json gap register from the whs-compliance-audit skill. This is the back half of the audit-to-build system: when a findings.json is present, produce ONLY the documents it flags, tailored to its notes, so each document traces to a real gap rather than a template guess. Use proactively when someone wants a document library produced."
 ---
 
+> v2026-08-04.1 · source-of-truth: `nowgroup-skills/skills/whs-document-builder/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+
 # WHS Document Builder
 
 Generates complete, branded, Word-compatible (.docx) WH&S document libraries for trade and service businesses, for **AU or NZ** clients. Produces professional multi-document suites using the `docx` npm package, validated against the OOXML standard before delivery.

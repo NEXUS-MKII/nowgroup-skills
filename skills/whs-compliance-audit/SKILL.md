@@ -3,6 +3,8 @@ name: whs-compliance-audit
 description: "Use when a user wants to audit, assess, review, or gap-analyse a business's Work Health & Safety (WHS) compliance, for an Australian or New Zealand client. Triggers: 'audit our WHS', 'are we compliant', 'WHS gap analysis', 'review our safety documentation', 'WHS health check', 'where are the gaps in our safety system', or any request to evaluate existing safety policies/SOPs/registers against legal requirements. Also trigger when a user points at a Google Drive folder of safety documents and asks what's missing, uploads a batch of policies for review, or asks whether their documentation would stand up to a regulator or insurer. Produces a standalone gap register plus remediation roadmap, the assessment sold first that justifies any document rewrites afterward. Use proactively when someone wants to know the STATE of their compliance, rather than wanting documents produced (that is the coupled whs-document-builder skill). If unsure whether a request is assess vs produce, assess first."
 ---
 
+> v2026-08-04.1 · source-of-truth: `nowgroup-skills/skills/whs-compliance-audit/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+
 # WHS Compliance Audit
 
 A skill for auditing a trade or service business's Work Health & Safety compliance against the correct jurisdiction's legal framework, and producing a **standalone, defensible gap register + remediation roadmap**.

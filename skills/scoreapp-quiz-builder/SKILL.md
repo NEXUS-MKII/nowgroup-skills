@@ -14,6 +14,8 @@ description: >-
   (see Step 0) because the platform's features and plan gating change over time.
 ---
 
+> v2026-08-04.1 · source-of-truth: `nowgroup-skills/skills/scoreapp-quiz-builder/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+
 # ScoreApp Quiz Builder
 
 This skill captures a battle-tested method for building quiz funnels in ScoreApp:
