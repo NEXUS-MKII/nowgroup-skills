@@ -3,6 +3,8 @@ name: nowgroup-whitepaper-builder
 description: Build, audit, and remediate NOW Group's own white papers under NOW doctrine — the paper as withholding instrument, run pathos/logos/ethos, scored by ASSAY. Use whenever the user wants to write a white paper, turn a question or a body of material into one, score or audit a draft, fix a HOLD or REVISE verdict, or diagnose why a paper did not open conversations. Triggers on "write a white paper", "audit this paper", "score this draft", "run ASSAY", "turn this into a white paper", "is this paper ready", "why didn't this paper land", or a draft pasted for review. Also fires on "pathos logos ethos", "convergence check", or "the carrier test" in a document context. Do NOT use for client proposals (nowgroup-proposal-builder), sell-sheets, capability decks, LinkedIn content, or papers written in a client's voice — this skill covers NOW Group's own papers only.
 ---
 
+> v2026-08-18.1 · source-of-truth: `nowgroup-skills/skills/nowgroup-whitepaper-builder/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+
 # NOW Group White Paper Builder
 
 ## 0 · Runtime doctrine fetch — mandatory, before anything else

@@ -3,6 +3,8 @@ name: nowgroup-whitepaper-assay
 description: Run ASSAY — the NOW Group white paper audit — against a draft, with blocking human gates at every point the model cannot know the answer. Scores ten dimensions across two passes, applies nine kill conditions, and returns SHIP, REVISE or HOLD. Use whenever a white paper draft needs auditing, scoring, or a verdict checked — "run ASSAY", "audit this paper", "score this draft", "is this paper ready to publish", "why did this paper fail", "re-audit after my edits", or a paper pasted with any request to assess it. Also fires on "kill check", "convergence check", "carrier test", "survey symmetry". Do NOT use to write or fix a paper — that is nowgroup-whitepaper-builder. Do NOT use for proposals, sell-sheets, or client-voice papers.
 ---
 
+> v2026-08-18.1 · source-of-truth: `nowgroup-skills/skills/nowgroup-whitepaper-assay/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+
 # ASSAY — white paper audit runner
 
 ## 0 · Runtime spec fetch — mandatory
