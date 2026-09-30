@@ -1,6 +1,6 @@
 ---
 name: consultative-selling-thread-builder
-description: Spin up a primed sales thread for consultative LinkedIn prospecting. Use this skill whenever the user wants to build a sales thread, prime a thread for prospecting, prepare a prospect, draft a LinkedIn DM or comment, produce a sales reconnaissance brief, assess client or lead readiness, decide whether to message or comment or hold, or apply consultative selling, identity-based framing, and micro-compliance to a live prospect conversation. Also trigger when the user asks for the "next best move" with a lead, references a LinkedIn DM history, mentions prospect intelligence, refers to BAA, NOW Group, Buyer's Agents Academy, or pastes a prospect's profile, post, or message thread asking for help. Trigger even if the user doesn't explicitly name the system — phrasing like "what should I send this prospect" or "help me with this LinkedIn conversation" should fire this skill.
+description: Spin up a primed sales thread for consultative LinkedIn prospecting. Use this skill whenever the user wants to build a sales thread, prime a thread for prospecting, prepare a prospect, draft a LinkedIn DM or comment, produce a sales reconnaissance brief, assess client or lead readiness, decide whether to message or comment or hold, or apply consultative selling, identity-based framing, and micro-compliance to a live prospect conversation. Also trigger when the user asks for the "next best move" with a lead, references a LinkedIn DM history, mentions prospect intelligence, or pastes a prospect's profile, post, or message thread asking for help. Trigger even if the user doesn't explicitly name the system — phrasing like "what should I send this prospect" or "help me with this LinkedIn conversation" should fire this skill.
 ---
 
 # Consultative Selling Thread Builder
@@ -168,7 +168,7 @@ The rationale teaches the operator the pattern. It is non-optional.
 
 ## Setup shortcut (for fresh threads)
 
-If the thread is brand new and the operator says something like "set me up" or "prime this thread for BAA prospecting," do the following in one response:
+If the thread is brand new and the operator says something like "set me up" or "prime this thread for [client] prospecting," do the following in one response:
 
 1. Fetch the master prompt, unified principles, and behaviour rules sources (these are the operating layer)
 2. Ask for the business context (point at the business context blank template URL)
