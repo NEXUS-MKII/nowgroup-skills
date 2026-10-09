@@ -81,8 +81,15 @@ for someone to click together by hand. It can **execute** much of the build.
   `create/update/delete-audience`, `create/update/delete-scorecard-lead-form-field`,
   `update-scorecard-settings`, `update-scorecard`, `preview-audience-matches`.
 
+**New build vs existing scorecard — read the situation right:**
+- **Building a brand-new scorecard?** There is nothing to read — you **write** it. Go straight to the build tools (`create-scorecard`, `create-scorecard-question`, `create-scorecard-category`, `update-scorecard-score-tiers`, …). The only "read" is a quick capability/plan-gating check *if* you're unsure a feature exists.
+- **Modifying or extending an existing scorecard** (like MyWealth)? **Read its live config first** (its questions, categories, tiers, UUIDs) so your writes extend it instead of clobbering it.
+- **Tuning scoring/segmentation?** Read real **responses** to validate against.
+
+So "read first" means *read what already exists or confirm a capability* — not "read a blank template." For a from-scratch build, writing IS the work.
+
 **Safe build pattern:**
-1. **Read first** (Step 0) — never write blind against assumptions.
+1. **Read first when there's something to read** (an existing scorecard, or a capability to confirm) — but never stall a new build waiting to "read" something that doesn't exist yet.
 2. Build in a **draft** scorecard and tune tiers with real/test responses.
 3. After each write, **read the object back** to confirm it landed as intended.
 4. Treat `delete-*` with care — confirm before removing questions/categories/tiers.
