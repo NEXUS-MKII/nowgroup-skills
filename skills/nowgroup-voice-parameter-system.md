@@ -3,6 +3,8 @@ name: nowgroup-voice-parameter-system
 description: Extract, encode, deploy, and audit a NOW Group / NEXUS Voice Parameter Block — the structured voice fingerprint that grounds every piece of content produced for a client. Use when the user mentions voice analysis, voice encoder, voice parameter block, voice fingerprint, voice drift, drift detection, batch priming, voice re-encoding, NEXUS voice system, NOW voice, parameter block, or pastes transcripts / written samples for analysis. Also fires when the user asks "what voice should I write in for [client]" or wants to load a client voice for a content session.
 ---
 
+> v2026-10-10.1 · source-of-truth: `nowgroup-skills/skills/nowgroup-voice-parameter-system.md`. Banned-word lists retired; replaced by the low-cadence word-usage check (§5.3).
+
 # NOW Group · NEXUS Voice Engineering System
 
 You are running the NOW Group Voice Engineering System — the universal, repeatable, code-deployable protocol for extracting, encoding, deploying, and auditing client voice fingerprints. This is the foundation under every NOW Group content build (Content Pack Pro, Partner Growth Specialist, GX-1, etc.) and grounds Voice-Filtering / Voice-Encoder-Lite / Voice-Encoder-Pro tooling internally.
@@ -196,7 +198,21 @@ Signal 5 · phil_claim_leads: PASS / FAIL — <evidence>
 
 Overall: <PASS / FAIL>
 Action: <accept / regenerate with priming addition>
+
+WORD-USAGE CHECK (judgment, not a gate)
+| word / phrase | count | judgment: better word, or tick mode? |
 ```
+
+### 5.3 Word-usage check (replaces banned words, from 2026-10-10)
+
+There are **no banned words**. Mechanical bans produce worse copy: the generator swaps one tic for another (e.g. "optimise" → "sharpen"), and the author's own vocabulary gets treated as jargon. Instead, every audit ends with a word-usage check:
+
+- **Count repeats.** Flag any word or phrase that recurs enough to become a tic. A deliberate motif (e.g. a "48 hours" thread) is fine; say so and cap it.
+- **Flag AI-vernacular rhythm**: stock phrases and cadences that read as generated rather than written.
+- **Check `low_cadence_words`.** These are words this voice uses rarely or never. A hit is a *prompt to interrogate*, not a failure.
+- **For every flag, record a judgment:** *is there a better word here, or are we in tick mode?* Keep the word if it's the right word.
+- **Never auto-substitute synonyms** to dodge a list.
+- **The author's judgment is final on word choice.** Surface the flags; don't silently rewrite.
 
 If FAIL: surface the exact priming-message addition needed, do not silently edit.
 
@@ -278,7 +294,7 @@ custom_devices: <any newly named devices discovered>
 # NEXUS FINGERPRINT FIELDS (from nexus_brand_discovery.py — if scraped)
 voice_fingerprint: '<2-3 sentence voice description>'
 tone_descriptors: <comma list>
-banned_words: <comma list>
+low_cadence_words: <comma list — words this voice uses rarely or never; a review prompt, not a ban (§5.3)>
 signature_phrases: <comma list — verbatim, do not paraphrase>
 sector_focus: <industry/niche>
 audience_who: '<tight one-line description>'
@@ -333,7 +349,7 @@ This skill is **Encoder Pro**. Do not slip into Encoder Lite output (skipping cl
 
 ## 10. NOW Group conventions (carry into every block)
 
-- **Banned words** baseline (extend per client): `synergy`, `leverage`, `paradigm`, `best-in-class`, `digital transformation`, `in today's business environment`, `genuinely`, `honestly`, `straightforward`, `as you can see`, `many business owners struggle with`, `I want to talk to you about`
+- **No banned words.** Word choice is audited by the low-cadence word-usage check (§5.3). Legacy `banned_words` fields in older blocks are read as `low_cadence_words`: review prompts, not bans. Stock-opener clichés ("in today's business environment", "I want to talk to you about", "many business owners struggle with") usually fail Signal 1 (context before hook) on their own merits.
 - **Signature phrases are verbatim** — never paraphrased, never reordered, never substituted
 - **Philosophical anchors close** — they earn the right to land by what precedes them; never open with a phil anchor
 - **Temperature shifts are signature** — never signal them, never transition into them, hard-cut only (unless the client's specific block says otherwise)
@@ -345,6 +361,7 @@ This skill is **Encoder Pro**. Do not slip into Encoder Lite output (skipping cl
 - Do not analyse voice from < 800 words of transcript + 4 written samples (or 6 written samples in transcript-absent mode). Inputs are non-negotiable.
 - Do not produce a partial parameter block. If a cluster has insufficient data, mark fields `UNSCORED` and surface what input is missing.
 - Do not paraphrase a client's signature_phrases, phil_anchors, or empathy_anchors. They are verbatim or absent.
+- Do not enforce word bans or auto-substitute synonyms. Run the word-usage check (§5.3) and leave the call to the author.
 - Do not silently edit AI-generated content that fails Encoder Lite — return for regeneration with specific failure notes.
 - Do not improvise the analysis protocol from training data — always fetch the canonical source at session start.
 - Do not skip the priming message in Mode B. The block must be confirmed active before any content fires.

@@ -2,6 +2,8 @@ NOW GROUP — NEXUS VOICE ENGINEERING SYSTEM
 Voice Analysis, Parameter Extraction & Deployment System
 Universal. Repeatable. Code-deployable. Load this before every content session.
 
+Revision 2026-10-10: banned-word lists retired. Word choice is audited by a low-cadence word-usage check (count repeats, flag AI-vernacular, then ask "is there a better word, or are we in tick mode?"). The author's judgment is final.
+
 Part 1
 The Analysis Protocol — how to extract a voice fingerprint from any transcript + 4 written samples
 
@@ -321,7 +323,7 @@ custom_devices: [any newly named devices discovered]
 # NEXUS FINGERPRINT FIELDS (from nexus_brand_discovery.py)
 voice_fingerprint: '[2-3 sentence voice description]'
 tone_descriptors: [comma-separated list]
-banned_words: [comma-separated list]
+low_cadence_words: [comma-separated list: words this voice uses rarely or never; review prompts, not bans]
 signature_phrases: [comma-separated list — these are verbatim, do not paraphrase]
 sector_focus: [industry/niche]
 audience_who: '[tight one-line description]'
@@ -405,7 +407,7 @@ custom_devices: repulsion_mechanism_check (broadcasting from lack vs fullness), 
 # NEXUS FINGERPRINT FIELDS
 voice_fingerprint: 'Operator-intellectual. Thinks in systems, speaks in physics analogies. RAF signals engineering meets performance psychology — precision tools applied to human relationships. Savage then warm, without warning or transition. Coins his own concepts rather than borrowing borrowed frameworks.'
 tone_descriptors: precise, confronting, generous, philosophical, self-aware, retrospective, warm-without-announcement
-banned_words: genuinely, honestly, straightforward, synergy, leverage, paradigm, best-in-class, digital-transformation, in-todays-business-environment, I-want-to-talk-to-you-about, many-business-owners-struggle-with, as-you-can-see
+low_cadence_words: genuinely, honestly, straightforward, synergy, paradigm, best-in-class, digital-transformation, as-you-can-see  # review prompts, not bans (word-usage check, 2026-10-10). Author judgment is final.
 signature_phrases: 'Truth travels at zero resistance', 'You will know them by their fruits', 'The field reflects what you broadcast. Always.', 'That is on me.', 'Contribution without engineering burns what it was meant to warm.', 'Not a mastermind. A resonance chamber.', 'Operators only.'
 sector_focus: SME networking, partner ecosystems, business growth, relationship engineering
 audience_who: 'Ambitious lifestyle business operators — trades, professional services, coaching, consulting — who are building seriously and networking strategically. Not beginners. People who already give a lot and want systems underneath the generosity.'
