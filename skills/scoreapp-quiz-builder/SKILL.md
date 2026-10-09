@@ -10,11 +10,14 @@ description: >-
   responses into segmented leads and nurture sequences — even if they don't name
   ScoreApp explicitly. Also use when building or critiquing quiz questions,
   score tiers, categories, Logic Jumps, Audiences, merge tags, or quiz-driven
-  result/PDF personalization. ALWAYS web-search ScoreApp's current docs first
-  (see Step 0) because the platform's features and plan gating change over time.
+  result/PDF personalization. Establish ground truth FIRST (see Step 0): if the
+  ScoreApp MCP is connected, read the live scorecard through it; otherwise
+  web-search the current docs, because features and plan gating change over time.
 ---
 
-> v2026-08-04.1 · source-of-truth: `nowgroup-skills/skills/scoreapp-quiz-builder/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+> v2026-10-10.1 · source-of-truth: `nowgroup-skills/skills/scoreapp-quiz-builder/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+>
+> **2026-10 refresh:** reworked around the **ScoreApp MCP connector**, which can now read a scorecard's live config AND build it (questions, categories, tiers, audiences). Web-search is now the fallback, not the first move. Added the verified resume-link format and the "started ≠ abandoned" finding.
 
 # ScoreApp Quiz Builder
 
@@ -25,27 +28,70 @@ ScoreApp has several non-obvious constraints and capabilities that, if
 misunderstood, lead to architectures that cannot be built — and because the
 platform changes, so assumptions must be re-verified every time.
 
-## Step 0 — Verify currency FIRST (non-negotiable)
+## Step 0 — Establish ground truth FIRST (non-negotiable)
 
-ScoreApp's feature set, plan gating, merge-tag syntax, and UI change over time.
-Before giving any build advice, **web-search the current ScoreApp documentation**
-and confirm the specifics you are about to rely on. Treat everything in this
-skill's reference files as a strong prior to be re-validated, not as gospel.
+ScoreApp's feature set, plan gating, merge-tag syntax, UI — and a given
+scorecard's live config — all change over time. Before giving any build advice,
+establish what is actually true right now. Two routes, in order of preference:
 
-Run searches such as:
+**A. If the ScoreApp MCP is connected (preferred) — read the live account.**
+A ScoreApp MCP connector exposes the real scorecard, not a secondhand doc. Use
+its READ tools to ground every decision:
+- `list-scorecards` → find the scorecard and its id.
+- `get-scorecard-settings` → status, lead-form fields, **score tiers** (names +
+  bands), tracking, sub-domain.
+- `list-scorecard-questions` / `list-scorecard-categories` → the real questions
+  and their **UUIDs** (needed for merge tags and answer filtering).
+- `list-results` (`status: started | finished`), `list-result-answers`,
+  `list-result-scores`, `get-result` (`include: answers, scores, source,
+  activity`) → real responses, to validate scoring and segmentation against.
+  (`additional_data` is plan-gated.)
+
+This is ground truth; prefer it over any doc or memory. See the MCP section below
+for the full tool list and the build tools.
+
+**B. Otherwise — web-search the current docs.** Run searches such as:
 - `ScoreApp [feature] documentation` (e.g. "ScoreApp Audiences documentation")
 - `ScoreApp merge tags list site:support.scoreapp.com`
 - `ScoreApp [feature] plan tier` (to confirm what's gated to Pro/Business)
 - `ScoreApp custom code block results page` (capabilities change)
 
-Fetch `support.scoreapp.com` articles directly when found. If a search result
-contradicts this skill, **trust the current docs** and tell the user what
+Fetch `support.scoreapp.com` articles directly when found.
+
+Treat this skill's reference files as a strong prior to be re-validated, not as
+gospel. Be especially skeptical of secondhand claims (forum posts, AI how-tos) —
+the thread that produced this skill hit an AI assistant that flip-flopped on
+whether custom-code blocks could be toggled dynamic. If a live read or current
+doc contradicts this skill, **trust the live source** and tell the user what
 changed. If you cannot verify a capability, say so plainly rather than assuming.
 
-Be especially skeptical of secondhand claims (forum posts, AI-generated how-tos).
-The thread that produced this skill encountered an AI assistant that
-flip-flopped repeatedly on whether custom-code blocks could be toggled dynamic.
-Confirm against first-party docs.
+## The ScoreApp MCP — it can read AND build
+
+When the connector is present, the skill is no longer limited to writing a spec
+for someone to click together by hand. It can **execute** much of the build.
+
+- **Read tools** (ground truth — Step 0): `list-scorecards`,
+  `get-scorecard-settings`, `list-scorecard-questions`,
+  `list-scorecard-categories`, `list-results`, `list-result-answers`,
+  `list-result-scores`, `get-result`, `get-result-source`,
+  `get-scorecard-statistics`, `list-audiences`, `list-result-activity`, and the
+  answer/score/page/question statistics tools.
+- **Write/build tools:** `create-scorecard`, `create/update/delete-scorecard-question`,
+  `create/update/delete-scorecard-category`, `update-scorecard-score-tiers`,
+  `create/update/delete-audience`, `create/update/delete-scorecard-lead-form-field`,
+  `update-scorecard-settings`, `update-scorecard`, `preview-audience-matches`.
+
+**Safe build pattern:**
+1. **Read first** (Step 0) — never write blind against assumptions.
+2. Build in a **draft** scorecard and tune tiers with real/test responses.
+3. After each write, **read the object back** to confirm it landed as intended.
+4. Treat `delete-*` with care — confirm before removing questions/categories/tiers.
+5. Write tools change the **client's live asset** — confirm with the operator
+   before structural changes to a live scorecard.
+
+The MCP does NOT replace architecture judgement (the four mechanisms below), and
+it does not cover everything — custom-code result pages, nurture emails, and some
+plan-gated features still need the UI and current docs.
 
 ## The four mechanisms (the mental model)
 
@@ -77,6 +123,8 @@ These are the traps. Design around them from the start.
 - **Logic Jumps force a fixed question order** (you lose randomised/category ordering once enabled).
 - **Custom Code blocks cannot be natively toggled into score-tier tabs** the way text sections can. To make a code block conditional, either wrap it in an Audience, or use JS show/hide driven by a merge tag.
 - **localStorage / sessionStorage do not work reliably inside ScoreApp-embedded code.** If a tool must *save* the user's data, build it as a standalone page hosted elsewhere and link to it.
+- **"Started" is not "abandoned".** `list-results status=started` returns everyone who did not reach their result — but most have answered nearly every question and simply did not hit the final step. Distinguish *near-complete* (worth a "finish the scorecard" nudge) from *truly abandoned* (gave little). Treating them as one bucket wastes the near-complete ones, who are the warmest leads on the list.
+- **Resume/continuation links are not in the API — build them from the key.** A started/abandoned lead's on-page `result_url` is blank until completion, and the API/MCP does not expose a resume URL. The format is deterministic: `https://<subdomain>.scoreapp.com/continue/<result key>` (verified on the MyWealth Quiz, 2026-10). Generate it from each result's `key`; never invent other params. This is what lets a follow-up drop someone back exactly where they stopped.
 
 ## The build workflow
 
@@ -112,6 +160,26 @@ Read the relevant file(s) for the step you're on:
 - `references/dynamic-delivery.md` — the four-mechanism decision tree in depth, with the per-section build-map method and worked examples.
 - `references/custom-code-and-merge-tags.md` — merge-tag reference, custom-code-block reality, editor-safe JS pattern, the standalone-tool-for-persistence rule.
 - `references/nurture-framework.md` — the 3-sequence email framework and how routing values flow to the email platform.
+
+## Worked example — the MyWealth Quiz (MyFuture)
+
+A live reference build, fully readable through the MCP (scorecard id
+`cf4c791c-8583-4d49-a5f7-dcfdd36440b5`, subdomain `myfuturewealth`):
+
+- **19 quiz questions + phone capture**, in the 3-part structure: *Part 1 capture*
+  (household income, home ownership), *Part 2 scored diagnostic* (yes/no habits —
+  budget review, emergency fund, KiwiSaver strategy, net worth tracking,
+  insurance, written plan), *Part 3 intent/qualifiers* (current situation, 90-day
+  goal, primary obstacle, support preference, wealth-app interest, and a free-text
+  "one thing to know").
+- **5 score tiers:** Activation (0-29) → Accelerator One (30-46) → Accelerator
+  Two (47-62) → Accelerator Three (63-78) → Freedom Architect (79-100).
+- **Segmentation runs on what they asked for (Part 3), not the score** — a low
+  scorer who asked for an adviser outranks a high scorer who wants to self-serve.
+  The full routing, segments, and CTA ladder live in
+  `MyFuture Quiz/MyFuture_Lead_Segmentation_Method.md`.
+- Follow-ups use resume links (`/continue/{key}`) and the Lara-voice Message
+  Engine; abandoned-cart emails fire natively (visible in `get-result` activity).
 
 ## Output style
 When producing build deliverables, prefer a clear spec (logic, thresholds, section maps, setup steps) over vague advice. When producing result-page code, make it self-contained and on the client's brand. Always end a build plan with the open decisions the user must make before building.
