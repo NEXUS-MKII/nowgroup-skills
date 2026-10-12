@@ -8,11 +8,12 @@ description: >-
   link attached — send it with the TMT signature, then log it back in GHL. Use
   whenever someone asks how to work the TMT / tradie leads, "how do I message a
   tradie", "which quiz link do I send", "how do I use the TMT message engine",
-  "what's Aaron's voice", or is onboarding to the TMT follow-up workflow. The
-  MyFuture / Lara setup is the sister skill — see lead-tracker-message-engine.
+  "what's Aaron's voice", "how do I manage the pipeline / opportunity / notes in
+  GHL for Aaron", or is onboarding to the TMT follow-up workflow. The MyFuture /
+  Lara setup is the sister skill — see lead-tracker-message-engine.
 ---
 
-> v2026-10-12.2 · source-of-truth: `nowgroup-skills/skills/tmt-message-engine/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+> v2026-10-12.3 · source-of-truth: `nowgroup-skills/skills/tmt-message-engine/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
 
 # Working TMT leads: GHL + the Message Engine, in Aaron's voice
 
@@ -72,8 +73,47 @@ leaking out the back — **not** working more hours. Blunt, warm, zero fluff.
    DM gives an opener + two nudges. Check the **quality gate** is green.
 5. **Read it like the tradie would, then send/copy.** Email goes out with the
    branded **TMT signature** (never a bare, spammy email). DMs/SMS go short.
-6. **Log it back in GHL** — what you sent in the contact's notes, the next step +
-   date, move the status/stage. A touch that isn't logged didn't happen.
+6. **Log it back in GHL** — note what you sent, move the opportunity stage, set the
+   next task. A touch that isn't logged didn't happen. Full how-to below.
+
+## Managing the lead in GHL (Aaron's CRM)
+
+GHL is the board — this is how you keep it straight. (It's a GHL sub-account; if a
+menu label differs slightly from below, the mechanics are the same.)
+
+- **Find the tradie.** Left nav → **Contacts** (search name / email / phone), or
+  **Conversations** if you're picking up a live SMS/email thread. The phone AI's
+  call summary lands on the contact timeline — read it before you write.
+- **Talk to them in Conversations.** The SMS / email thread lives there; send and
+  reply from the contact's conversation, not your own inbox, so it's all on record.
+- **Make a note after every touch.** On the contact record → **Notes** (or **Add
+  note** on the timeline): what you sent, what they said, anything useful for next
+  time. This is the GHL version of "log this touch".
+- **Work the opportunity + pipeline.** Aaron's tradie deals live in the **TMT –
+  Business in a Box** pipeline. If the tradie has no opportunity yet and they're
+  real, add one (Contact → **Opportunities** / **+ Add**, into that pipeline). Then
+  **move the stage to match reality** after each step:
+
+  | Stage | When it's here |
+  |---|---|
+  | **Lead** | In, not yet qualified |
+  | **Qualified** | Fits the ICP, worth working |
+  | **Diagnostic Booked** | Call / diagnostic is booked |
+  | **Diagnostic Complete** | Diagnostic done |
+  | **Proposal Sent** | Proposal / offer is out |
+  | **Won – Onboarding** | Signed, starting |
+  | **Build Phase → Implementation Complete → Ongoing Support** | Delivery stages |
+
+- **Set the next task with a due date.** Contact → **Tasks** / **+ Add task** (e.g.
+  "call back Thu", due date set). That's the GHL version of next-step + date — it
+  chases you, not the other way round.
+- **Tag so lists stay filterable.** Tag by what the lead is about — e.g. which quiz
+  (`quiz-profit`, `quiz-risk`, `quiz-culture`), source, hot / cold. Keeps Aaron's
+  smart lists and automations clean.
+
+**The discipline, every lead:** read the timeline → write in the engine → send
+from Conversations → note it → move the stage → set the next task. One source of
+truth, always current.
 
 ## The ask (CTA) — and the quiz link
 
