@@ -2,34 +2,30 @@
 name: tmt-message-engine
 description: >-
   Walks a team member (Earl, or any rep) through working Aaron's Tradies
-  Mentoring Tradies (TMT) leads: pick a lead off the TMT Lead Tracker, read them,
+  Mentoring Tradies (TMT) leads: pick a lead in GHL (Aaron's CRM), read them,
   write the outreach in the TMT Message Engine in Aaron's voice (pain-first, one
   low-friction ask), pick the quiz/chat/reply/resource CTA — with the real quiz
-  link attached — send it with the TMT signature, then log it back. Use whenever
-  someone asks how to work the TMT / tradie leads, "how do I message a tradie",
-  "which quiz link do I send", "how do I use the TMT message engine", "what's
-  Aaron's voice", "where do I log it", or is onboarding to the TMT follow-up
-  workflow. The MyFuture / Lara setup is the sister skill — see
-  lead-tracker-message-engine.
+  link attached — send it with the TMT signature, then log it back in GHL. Use
+  whenever someone asks how to work the TMT / tradie leads, "how do I message a
+  tradie", "which quiz link do I send", "how do I use the TMT message engine",
+  "what's Aaron's voice", or is onboarding to the TMT follow-up workflow. The
+  MyFuture / Lara setup is the sister skill — see lead-tracker-message-engine.
 ---
 
-> v2026-10-12.1 · source-of-truth: `nowgroup-skills/skills/tmt-message-engine/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
+> v2026-10-12.2 · source-of-truth: `nowgroup-skills/skills/tmt-message-engine/SKILL.md` — if the repo copy shows a newer version than this line, this upload is stale: re-package and re-upload it.
 
-# Working TMT leads: the Tracker + the Message Engine, in Aaron's voice
+# Working TMT leads: GHL + the Message Engine, in Aaron's voice
 
-Two tools, one loop. The **TMT Lead Tracker** tells you *who* to work and holds
-what we know about each tradie. The **TMT Message Engine** writes the *outreach*
-in Aaron's voice. Pick a lead on the tracker, write their message in the engine,
-send it, log it back. Never one without the other.
+**GHL is your board, the Message Engine is your pen.** You track Aaron's tradie
+leads in **GHL** (his CRM — that's where the phone AI books and chases them, and
+where you set status and next steps). The **TMT Message Engine** is the one tool
+you open here: it writes the outreach in Aaron's voice. Pick a lead in GHL, write
+their message in the engine, send it, log it back in GHL.
 
-TMT leads flow between **AUBIT** and **GHL** (Aaron's phone AI books and chases on
-the GHL side; the tracker is our board). This is one of your projects — work it
-the same disciplined way as the rest.
+This is one of your projects — work it the same disciplined way as the rest.
 
-## The two tools
+## The tool
 
-- **TMT Lead Tracker** — `https://claude.ai/artifact/9JTmkXrqXfvWuMT51nB4ig`
-  Every tradie lead, with status, next step, notes and source.
 - **TMT Message Engine** — `https://claude.ai/artifact/9yqEhCh6FG1nDzzhwdQsCK`
   Writes the email / DM / post-call follow-up in Aaron's voice. First time you hit
   **Write it** it asks you to allow Claude for the page — say yes.
@@ -39,7 +35,8 @@ the same disciplined way as the rest.
 > Aaron / TMT** — Aaron's voice, "Stay Solid, Aaron Kemp", the branded TMT
 > signature. Don't let the gold throw you: what goes OUT is pure tradie.
 
-Open both, keep lead data private.
+(There's no separate TMT lead board to keep — GHL is the source of truth for who
+to work and where each tradie is up to.) Keep lead data private.
 
 ## Who Aaron is (so the message lands)
 
@@ -51,8 +48,8 @@ leaking out the back — **not** working more hours. Blunt, warm, zero fluff.
 
 ## The loop (do it in this order, every lead)
 
-1. **Pick a lead on the tracker.** Work the warmest first (booked/called via the
-   GHL phone AI, then quiz-takers, then the colder list). Open their row.
+1. **Pick a lead in GHL.** Work the warmest first (booked/called via the phone AI,
+   then quiz-takers, then the colder list). Open their contact.
 2. **Read them before you write.** Trade, staff count, where they are, and their
    own words — what's actually keeping them up (flat out? can't find staff? money
    not matching the effort?). That's the pain you'll open on.
@@ -75,8 +72,8 @@ leaking out the back — **not** working more hours. Blunt, warm, zero fluff.
    DM gives an opener + two nudges. Check the **quality gate** is green.
 5. **Read it like the tradie would, then send/copy.** Email goes out with the
    branded **TMT signature** (never a bare, spammy email). DMs/SMS go short.
-6. **Log it back on the tracker** — what you sent in notes, the next step + date,
-   move the status. A touch that isn't logged didn't happen.
+6. **Log it back in GHL** — what you sent in the contact's notes, the next step +
+   date, move the status/stage. A touch that isn't logged didn't happen.
 
 ## The ask (CTA) — and the quiz link
 
@@ -128,10 +125,11 @@ the $30K program or a price cold; generic lines any tradie could get.
   engine post the real URL. Never invent or retype a link.
 - **Every email carries the TMT signature.** No bare sends.
 - **Specific to THIS tradie.** Thin context = say less, never invent facts.
-- **Always log back** so the board stays current — it's how we know who's next.
+- **Always log back in GHL** so the record stays current — it's how we know who's
+  next and what's already been said.
 
 ## Where this is heading
 
-Once the engine + tracker are folded into **AUBIT-TMT**, you'll run this same loop
-from inside the AUBIT **Contacts** workspace at `crm.tmtquiz.com.au` instead of
-separate pages. The loop doesn't change — same voice, same asks, same log-back.
+Once the engine is folded into **AUBIT-TMT**, you'll write from inside the AUBIT
+**Contacts** workspace at `crm.tmtquiz.com.au` (which talks to GHL) instead of a
+separate page. The loop doesn't change — same voice, same asks, same log-back.
